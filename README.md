@@ -21,3 +21,15 @@ $ rails g controller {name(s)} {method}
 $ rails g model {name}
 ```
 
+# git 
+
+- ステージに配置していないものを元に戻す
+
+```
+$ git reset --hard HEAD
+```
+
+- 追跡されていないファイル、ディレクトリをワークツリーから削除する。
+```
+$ git clean -fd
+```
