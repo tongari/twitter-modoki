@@ -109,3 +109,28 @@ $ rake db:create
 $ rake db:migrate
 ```
 
+- schemaを確認
+`db/schema.rb` を確認
+
+# dbを確認
+
+- データベースのターミナルを開く
+```
+$ rails db
+```
+
+- テーブル確認
+```
+$ \d
+```
+
+# サーバを起動
+- Cloud9の場合
+```
+$ rails s -b $IP -p $PORT
+```
+
+- ローカル
+```
+$ rails s
+```
