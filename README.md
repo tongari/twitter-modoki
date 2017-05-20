@@ -134,3 +134,16 @@ $ rails s -b $IP -p $PORT
 ```
 $ rails s
 ```
+
+# DBに初期データ投入
+
+- seeds.rbに記載
+```
+# coding: utf-8
+Tweet.create(:content => 'ダミー投稿')
+```
+
+- DBに適用
+```
+$ rake db:seed
+```
