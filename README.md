@@ -147,3 +147,17 @@ Tweet.create(:content => 'ダミー投稿')
 ```
 $ rake db:seed
 ```
+
+# CRUDを作成
+- resourcesメソッドを使用して、routingを作成
+
+`config/routes.rb`
+```
+Rails.application.routes.draw do
+  resources :tweets
+  
+  ~~~~~~~~~~
+  省略
+  ~~~~~~~~~~
+
+```
