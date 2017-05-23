@@ -1,5 +1,9 @@
 <h1>みんなのつぶやき</h1>
 
+<%= link_to "つぶやきを投稿する", new_tweet_path %>
+
+
 <% @tweets.each do |tweet| %>
 <p><%= tweet.content %></p>
 <% end %>
+
