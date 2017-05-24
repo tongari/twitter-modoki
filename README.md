@@ -237,7 +237,7 @@ end
 - エラーメッセージを日本語化させる
 
 `参考url`<br>
-[http://blog.otsukasatoshi.com/entry/2016/04/17/024627](http://blog.otsukasatoshi.com/entry/2016/04/17/024627)
+[http://blog.otsukasatoshi.com/entry/2016/04/17/024627](http://blog.otsukasatoshi.com/entry/2016/04/17/024627)<br>
 [http://tarunama.hatenablog.com/entry/2017/05/22/201531](http://tarunama.hatenablog.com/entry/2017/05/22/201531)
 
 `がしかし`<br>
@@ -254,7 +254,6 @@ class Tweet < ActiveRecord::Base
     # 空のときにエラーメッセージを追加する
     if content.empty?
       errors[:base] << "なにかつぶやいてね"
-      errors[:base] << "エラーだよ"
     end
   end
   
@@ -275,3 +274,32 @@ end
 ```
 
 `カスタムエラーで追記すれば、日本語化の必要ない？？`
+
+
+- 投稿削除を作成
+
+`views/tweets/index.html.erb`
+```
+<%= link_to 'このつぶやきを削除！', tweet_path(tweet.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+```
+
+`controllers/tweets_controller.rb`
+```
+def destroy
+  @tweet = Tweet.find(params[:id])
+  @tweet.destroy
+  redirect_to tweets_path, notice: "つぶやきを削除しました！"
+end
+```
+
+- 投稿編集を作成
+
+`controllers/tweets_controller.rb`
+```
+def update
+  if @tweet.update(tweets_param)
+    redirect_to tweets_path, notice: "つぶやきを更新しました！"
+  else
+    render 'edit'
+  end
+end
