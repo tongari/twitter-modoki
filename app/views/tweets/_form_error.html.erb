@@ -1,0 +1,10 @@
+<% if @tweet.errors.any? %>
+<div id="error_explanation">
+  <h2><%= @tweet.errors.messages[:base].count %>件のエラーがあります。</h2>
+  <ul>
+    <% @tweet.errors.messages[:base].each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

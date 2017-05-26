@@ -3,10 +3,11 @@
 
 <%= link_to "つぶやきを投稿する", new_tweet_path %>
 
+<p>総つぶやき数 : <%= @tweets.count %></p>
 
 <% @tweets.each do |tweet| %>
-<p><%= tweet.content %></p>
-<%= link_to 'このつぶやきを編集', edit_tweet_path(tweet.id) %>
-<%= link_to 'このつぶやきを削除', tweet_path(tweet.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+  <p><%= tweet.content %></p>
+  <p><%= tweet.updated_at.to_s(:default) %></p>
+  <%= link_to 'このつぶやきを編集', edit_tweet_path(tweet.id) %>
+  <%= link_to 'このつぶやきを削除', tweet_path(tweet.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
 <% end %>
-

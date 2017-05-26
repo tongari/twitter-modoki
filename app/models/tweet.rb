@@ -5,7 +5,7 @@ class Tweet < ActiveRecord::Base
 
   def add_error
     # 空のときにエラーメッセージを追加する
-    if content.empty?
+    if content.blank?
       # errors.add(:content, "に関係するエラーを追加")
       # errors[:base] << "モデル全体に関係するエラーを追加"
       errors[:base] << "なにかつぶやいてね"

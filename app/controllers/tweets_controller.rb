@@ -3,11 +3,20 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only:[:edit, :update, :destroy]
   
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.order('updated_at DESC')
   end
   
   def new
-    @tweet = Tweet.new
+    if params[:back]
+      @tweet = Tweet.new(tweets_param)
+    else
+      @tweet = Tweet.new
+    end
+  end
+  
+  def re_new
+    @tweet = Tweet.new(tweets_param)
+    render 'new'
   end
   
   def create
@@ -37,6 +46,11 @@ class TweetsController < ApplicationController
   def destroy
     @tweet.destroy
     redirect_to tweets_path, notice: "つぶやきを削除しました！"
+  end
+  
+  def confirm
+    @tweet = Tweet.new(tweets_param)
+    render :new if @tweet.invalid?
   end
   
   

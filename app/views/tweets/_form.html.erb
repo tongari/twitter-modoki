@@ -1,0 +1,11 @@
+<%= form_for(@tweet, url:choose_new_or_edit) do |f| %>
+
+  <%= render 'form_error' %>
+
+  <%= f.label :つぶやき %>
+  <%= f.text_area :content, class: 'js-text-area' %>
+  <p><span class="js-count-text">0</span> / 140</p>
+  <%= f.submit :投稿 %>
+<% end %>
+
+<%= link_to '一覧に戻る', tweets_path %>
