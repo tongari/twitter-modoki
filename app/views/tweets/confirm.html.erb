@@ -12,7 +12,7 @@
   <%= f.submit :投稿 %>
 <% end %>
 
-<%= form_for(@tweet, url:re_new_tweets_path, method: 'post') do |f| %>
+<%= form_for(@tweet, url:tweets_new_path, method: 'post') do |f| %>
   <%= f.hidden_field :content %>
   <%= f.submit "戻る", name:'back' %>
 <% end %>

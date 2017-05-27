@@ -7,16 +7,12 @@ class TweetsController < ApplicationController
   end
   
   def new
-    if params[:back]
+    # if params[:back]
+    if request.post?
       @tweet = Tweet.new(tweets_param)
     else
       @tweet = Tweet.new
     end
-  end
-  
-  def re_new
-    @tweet = Tweet.new(tweets_param)
-    render 'new'
   end
   
   def create

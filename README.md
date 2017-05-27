@@ -379,23 +379,28 @@ end
 resources :tweets ,only: [:index, :new, :create, :edit, :update ,:destroy] do
   collection do
     post :confirm
-    post :re_new
   end
 end
+
+post 'tweets/new' => 'tweets#new'
 ```
 
 `controllers/tweets_controller.rb`
 ```ruby:controllers/tweets_controller.rb
-def re_new
-  @tweet = Tweet.new(tweets_param)
-  render 'new'
+def new
+  # if params[:back]
+  if request.post?
+    @tweet = Tweet.new(tweets_param)
+  else
+    @tweet = Tweet.new
+  end
 end
 ```
 
 `views/tweets/confirm.html.erb`
 ```ruby:views/tweets/confirm.html.erb
 <!-- 遷移先パスを変更してgetからpostへ-->
-<%= form_for(@tweet, url:re_new_tweets_path, method: 'post') do |f| %>
+<%= form_for(@tweet, url:tweets_new_path, method: 'post') do |f| %>
   <%= f.hidden_field :content %>
   <%= f.submit "戻る", name:'back' %>
 <% end %>
