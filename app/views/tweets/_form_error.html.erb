@@ -1,6 +1,6 @@
 <% if @tweet.errors.any? %>
-<div id="error_explanation">
-  <h2><%= @tweet.errors.messages[:base].count %>件のエラーがあります。</h2>
+<div class="alert alert-danger tweetsForm__error">
+  <p><%= @tweet.errors.messages[:base].count %>件のエラーがあります。</p>
   <ul>
     <% @tweet.errors.messages[:base].each do |msg| %>
     <li><%= msg %></li>

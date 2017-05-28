@@ -1,13 +1,36 @@
-<p><%= notice %></p>
-<h1>みんなのつぶやき</h1>
-
-<%= link_to "つぶやきを投稿する", new_tweet_path %>
-
-<p>総つぶやき数 : <%= @tweets.count %></p>
-
-<% @tweets.each do |tweet| %>
-  <p><%= tweet.content %></p>
-  <p><%= tweet.updated_at.to_s(:default) %></p>
-  <%= link_to 'このつぶやきを編集', edit_tweet_path(tweet.id) %>
-  <%= link_to 'このつぶやきを削除', tweet_path(tweet.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
-<% end %>
+<div class="container">
+  
+  <section class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 tweetsIndex">
+    <% if notice %>
+      <p class="tweetsFlash alert alert-success" role="alert"><%= notice %></p>
+    <% else %>
+    <% end %>
+    
+    <h1 class="text-center">みんなのつぶやき</h1>  
+    
+    <div class="panel panel-primary tweetsIndex__post">
+      <div class="panel-heading text-center">いまなにしてるの？</div>
+      <div class="panel-body tweetsIndex__postBox">
+        <%= link_to "つぶやきを投稿する", new_tweet_path, class: 'btn btn-default' %>
+      </div>
+    </div>
+    
+    <p class="tweetsIndex__totalCount">総つぶやき数 : <%= @tweets.count %></p>
+    
+    <% @tweets.each do |tweet| %>
+      <div class="well">
+        <p class="tweetsIndex__dateText"><%= tweet.updated_at.to_s(:default) %></p>
+        <p><%= tweet.content %></p>
+        <div class="tweetsIndex__tool">
+          <%= link_to edit_tweet_path(tweet.id), title: '編集' do %>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+          <% end %>
+          <%= link_to tweet_path(tweet.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } do %>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          <% end %>  
+        </div>
+      </div>
+    <% end %>
+  </section>
+  
+</div>

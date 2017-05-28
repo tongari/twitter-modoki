@@ -442,9 +442,18 @@ config.active_record.default_timezone = :local
 <%= javascript_include_tag 'application' %>
 ```
 
-
 - bootstrapで作る
-- 編集と削除と投稿ボタンをアイコン化
 
-### 余裕があれば
+`Gemfile`
+```
+gem 'twitter-bootstrap-rails
+```
+
+```bash
+$ bundle install
+$ rails generate bootstrap:install static
+```
+
+### 追加機能としては
 - 投稿する際にニックネームとアバターを設定させる
+- ページング

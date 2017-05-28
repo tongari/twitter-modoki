@@ -1,11 +1,33 @@
-<%= form_for(@tweet, url:choose_new_or_edit) do |f| %>
-
-  <%= render 'form_error' %>
-
-  <%= f.label :つぶやき %>
-  <%= f.text_area :content, class: 'js-text-area' %>
-  <p><span class="js-count-text">0</span> / 140</p>
-  <%= f.submit :投稿 %>
-<% end %>
-
-<%= link_to '一覧に戻る', tweets_path %>
+<div class="container">
+  <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 tweetsForm">
+  
+    <%= form_for(@tweet, url:choose_new_or_edit) do |f| %>
+    <%= render 'form_error' %>
+    
+      <div class="panel panel-info">
+        <div class="panel-heading text-center">
+          <% if isEdit %>
+            <%= f.label :つぶやきの編集 %>
+          <% else %>
+            <%= f.label :つぶやく %>
+          <% end %>
+        </div>
+        <div class="panel-body">
+          <%= f.text_area :content, rows: 6, class: 'form-control js-text-area' %>
+          <p class="text-right"><span class="js-count-text">0</span> / 140</p>
+          <div class="text-center">
+            <%= f.submit :投稿, class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  
+    <p class="text-right">
+    <%= link_to tweets_path do %>
+      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+      <span>一覧に戻る</span>
+    <% end %>  
+    </p>
+  
+  </div>
+</div>
