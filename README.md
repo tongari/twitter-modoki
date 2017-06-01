@@ -485,7 +485,7 @@ gem 'rails_12factor', group: :production
 ```
 
 ```bash
-% bundle install
+$ bundle install
 ```
 
 - Herokuへの送付
