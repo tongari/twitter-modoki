@@ -10,6 +10,11 @@ $ () ->
   if $textArea.length > 0
     $textCounter.text $textArea.val().length
   
-  $textArea.on 'keyup', ->
-    console.log $(@).val().length
-    $textCounter.text $(@).val().length
+  $textArea.on 'keyup keydown', ->
+    # console.log $(@).val().length
+    textVal = $(@).val().length
+    $textCounter.text textVal
+    if textVal > 140
+      $textCounter.css 'color', '#f00'
+    else
+      $textCounter.removeAttr 'style'
