@@ -454,6 +454,62 @@ $ bundle install
 $ rails generate bootstrap:install static
 ```
 
+# herokuに公開
+
+- hrokuとの連携準備
+
+```bash
+$ heroku login
+$ heroku create
+```
+
+- Herokuへのアセットプリコンパイル
+
+`config/environments/production.rb`
+```ruby
+config.assets.compile = false
+↓
+config.assets.compile = true
+```
+
+```bash
+$ rake assets:precompile RAILS_ENV=production
+```
+
+- Gem「rails_12factor」を追加
+
+`Gemfile`
+```ruby
+gem 'rails_12factor', group: :production
+を追記
+```
+
+```bash
+% bundle install
+```
+
+- Herokuへの送付
+
+`まずはアセットプリコンパイルしたものをgitにpush`
+```
+$ git add -A
+$ git commit -m 'update'
+$ git push heroku master
+```
+
+- Herokuのデータベースにテーブルを作成
+
+```bash
+$ heroku run rake db:migrate RAILS_ENV=production
+```
+
+- 環境変数を設定する
+
+```
+$ heroku config:add SECRET_TOKEN="$(bundle exec rake secret)"
+```
+
+
 ### 追加機能としては
 - 投稿する際にニックネームとアバターを設定させる
 - ページング
